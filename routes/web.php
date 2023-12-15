@@ -199,7 +199,7 @@ Route::group(['middleware' => ['check.auth', 'check.ACK']], function () {
     /*For Message Routes*/
     Route::any('messageView', [MessageController::class, 'view'])->name('messageView');
     Route::post('update-message', [MessageController::class, 'updateMessage'])->name('update-message');
-    Route::get('get-data-by-admin/{date}', [MessageCgetFoodDataontroller::class, 'viewMessageByAdmin'])->name('get-data-by-admin');
+    Route::get('get-data-by-admin/{date}', [MessageController::class, 'viewMessageByAdmin'])->name('get-data-by-admin');
 
     /*For Employee Transfer Routes   for Ekta  Routes */
 
