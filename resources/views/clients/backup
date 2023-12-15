@@ -1,0 +1,284 @@
+
+
+
+
+
+
+         e.preventDefault();
+         r = document.querySelector("#kt_contact_form"),
+         n = FormValidation.formValidation(r,
+        {
+            fields:{
+                location:{
+                    validators:{
+                        notEmpty:{
+                            message:"Location is required  Please Select Location !"
+                        }
+                    }
+                },
+                clients:{
+                    validators:{
+                        notEmpty:{
+                            message:"Client is required  Please Enter Client Name !"
+                        }
+                    }
+                },
+                department:{
+                    validators:{
+                        notEmpty:{
+                            message:"Department is required  Please Select Department !"
+                        }
+                    }
+                },
+                process_name:{
+                    validators:{
+                        notEmpty:{
+                            message:"Process is required  Please Select Process !"
+                        }
+                    }
+                },
+                sub_process:{
+                    validators:{
+                        notEmpty:{
+                            message:"Sub Process is required  Please Select Sub Process !"
+                        }
+                    }
+                },
+                it:{
+                    validators:{
+                        notEmpty:{
+                            message:"IT is required  Please Enter IT !"
+                        }
+                    }
+                },
+                hr:{
+                    validators:{
+                        notEmpty:{
+                            message:"HR is required  Please Enter HR !"
+                        }
+                    }
+                },
+                report_to:{
+                    validators:{
+                        notEmpty:{
+                            message:"Reports To is required  Please Enter Reports To !"
+                        }
+                    }
+                },
+                stipends:{
+                    validators:{
+                        notEmpty:{
+                            message:"Stipend is required  Please Enter Stipend !"
+                        }
+                    }
+                },
+                stipends_days:{
+                    validators:{
+                        notEmpty:{
+                            message:"Stipend Days is required  Please Enter Stipend Days !"
+                        }
+                    }
+                },
+              },
+
+  plugins:{
+        trigger:new FormValidation.plugins.Trigger,
+        bootstrap:new FormValidation.plugins.Bootstrap5({rowSelector:".fv-row",eleInvalidClass:"",eleValidClass:""})
+    }});
+
+
+
+
+
+
+   n&&n.validate().then((function(e)
+       {
+            if("Valid" == e)
+            {
+                 var url = $("#kt_contact_form").attr('action');
+                 var form = $("#kt_contact_form").serialize();
+                 $.post(url,form,function(response){
+                   response.success == true  ? (t.setAttribute("data-kt-indicator","on"),t.disabled=!0,setTimeout((function(){t.removeAttribute("data-kt-indicator"),
+                   Swal.fire({text:response.message,icon:"success",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn btn-primary"}}).then((function(e){e.isConfirmed&&(i.hide(),t.disabled=!1,window.location=r.getAttribute("data-kt-redirect"))}))}),2e3)):Swal.fire({text:response.message,icon:"error",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn btn-primary"}})
+                  });
+            }
+
+ }))
+
+
+
+
+
+
+
+
+
+ <script>
+ $(function(){
+
+ $('#update_clients_form').submit(function(event) {
+     event.preventDefault();
+     $('.error-message').remove();
+     let isValid = true;
+
+     $(this).find('.required').each(function() {
+         const input = $(this).closest('.fv-row').find(
+             '.form-control, select, check');
+         if (!input.val()) {
+             isValid = false;
+             const fieldName = $(this).text();
+             const errorMessage = fieldName + ' is required.';
+             $('<div class="error-message text-danger">' + errorMessage + '</div>')
+                 .insertAfter(input);
+         }
+     });
+
+     if ($('input[type=checkbox]:checked').length == 0) {
+         $('#locaErr').show();
+         isValid = false;
+     }
+
+     if (isValid === true) {
+
+         var url =  $('#update_clients_form').attr('action');
+         var form = $('#update_clients_form').serialize();
+         $.post(url, form, function(response){
+           response.success == true  ?
+           Swal.fire({text:response.message,icon:"success",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn btn-primary"}})
+           :Swal.fire({text:response.message,icon:"error",buttonsStyling:!1,confirmButtonText:"Ok, got it!",customClass:{confirmButton:"btn btn-primary"}})
+          });
+     } else {
+
+
+
+         return false;
+     }
+ });
+
+
+
+ $('#editlocation').on('change', function(e){
+     var location = $(this).val();
+      $.ajax({
+        url: "{{ url('get-dropdown') }}/" + location +'/excep',
+        success: function(result) {
+            $("#edit_exception_approver").html(result.html);
+
+
+        }
+    });
+
+    $.ajax({
+
+        url: "{{ url('get-dropdown') }}/" + location +'/excep',
+        success: function(result) {
+           $("#edit_downtime_quality").html(result.html);
+         }
+    });
+
+    $.ajax({
+        url: "{{ url('get-dropdown') }}/" + location +'/excep',
+        success: function(result) {
+             $("#edit_downtime_training").html(result.html);
+         }
+    });
+
+    $.ajax({
+        url: "{{ url('get-dropdown') }}/" + location +'/excep',
+        success: function(result) {
+             $("#edit_downtime_ops").html(result.html);
+
+         }
+    });
+
+    $.ajax({
+        url: "{{ url('get-dropdown') }}/" + location +'/vh',
+        success: function(result) {
+             $("#edit_vertical_head").html(result.html);
+       }
+    });
+
+    $.ajax({
+        url: "{{ url('get-dropdown') }}/" + location +'/ah',
+        success: function(result) {
+           $("#edit_operation_head").html(result.html);
+           $("#edit_account_head").html(result.html);
+         }
+    });
+
+    $.ajax({
+        url: "{{ url('get-dropdown') }}/" + location +'/ah',
+        success: function(result) {
+             $("#edit_quality_head").html(result.html);
+        }
+    });
+
+    $.ajax({
+        url: "{{ url('get-dropdown') }}/" + location +'/ah',
+        success: function(result) {
+             $("#edit_training_head").html(result.html);
+        }
+    });
+
+    $.ajax({
+        url: "{{ url('get-dropdown') }}/" + location +'/site',
+        success: function(result) {
+          $("#edit_site_spoc").html(result.html);
+          }
+    });
+
+    $.ajax({
+        url: "{{ url('get-dropdown') }}/" + location +'/hr',
+        success: function(result) {
+           $("#edit_er_spoc").html(result.html);
+         }
+    });
+
+    $.ajax({
+        url: "{{ url('get-dropdown') }}/" + location +'/hr',
+        success: function(result) {
+            $("#edit_er_spoc2").html(result.html);
+         }
+    });
+
+
+    $.ajax({
+         url: "{{ url('get-dropdown') }}/" + location +'/hr',
+        success: function(result) {
+                $("#edit_er_spoc3").html(result.html);
+            }
+    });
+
+
+
+
+
+
+    });
+
+
+  $.ajax({
+        url: "{{ url('get-department') }}/",
+       success: function(result) {
+
+
+         var mySelect = $('#edit_department');
+         $.each(result.department, function(val, text) {
+             $('#edit_department').append(new Option(text.dept_name, val.dept_id));
+
+         });
+
+
+
+
+
+           }
+   });
+
+
+ });
+
+
+
+
+

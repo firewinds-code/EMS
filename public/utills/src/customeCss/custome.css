@@ -1,0 +1,68 @@
+.boarderHeader {
+   background-color: #3e97ffa3;
+   color: white;
+}
+
+.cardOutline {
+   border-top: 3px solid #E76448 !important;
+}
+
+.cardHeader {
+   background-color: #3e97ffa3 !important;
+   min-height: 60px !important;
+}
+
+.cardheight {
+   height: 8rem !important;
+}
+
+
+
+.input-group .form-control {
+   padding-right: 40px;
+   /* Adjust this value as needed to make room for the icon */
+}
+
+.input-group-append {
+   position: absolute;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   z-index: 1;
+}
+
+
+.toast-success {
+   /* background-color: #D1DD72 !important; */
+   background-color: rgb(9, 157, 9) !important;
+   color: #fff !important;
+}
+
+.toast-error {
+   background-color: #E76448 !important;
+   color: #fff !important;
+}
+
+.toast-error {
+   background-color: #E76448 !important;
+   color: #fff !important;
+}
+
+
+.headerActive {
+   background-color: #7c837c !important;
+}
+
+.toggle-password {
+   background-color: #c9ccc9 !important;
+}
+
+
+.bgColor {
+   background-color: #E76448 !important;
+   color: aliceblue !important;
+}
+
+.heightAccrodianH {
+   height: 3.5rem !important;
+}
